@@ -9,6 +9,7 @@ import useFileHandler from "../hooks/useFileHandler";
 import useGraphData from "../hooks/useGraphData";
 import DataTableContainer from "./DataTableContainer";
 import ReactGA from "react-ga4";
+import ProfileMatching from "./ProfileMatching";
 
 const GraphDataHandler: React.FC = () => {
   const location = useLocation();
@@ -90,6 +91,9 @@ const GraphDataHandler: React.FC = () => {
       case "/data":
         setTabIndex(2);
         break;
+      case "/profile-matching":
+        setTabIndex(3);
+        break;
       default:
         setTabIndex(0);
     }
@@ -114,6 +118,7 @@ const GraphDataHandler: React.FC = () => {
     let path = "/upload";
     if (newValue === 1) path = "/graph";
     if (newValue === 2) path = "/data";
+    if (newValue === 3) path = "/profile-matching";
     navigate(path);
     ReactGA.send({
       hitType: "event",
@@ -137,7 +142,9 @@ const GraphDataHandler: React.FC = () => {
         <Tab label="Upload Artifacts" />
         <Tab label="Graph Visualization" />
         <Tab label="Data Tables" />
+        <Tab label="Profile Matching" />
       </Tabs>
+
       {tabIndex === 0 && (
         <Container
           maxWidth="md"
@@ -151,6 +158,7 @@ const GraphDataHandler: React.FC = () => {
           <Introduction />
         </Container>
       )}
+
       {tabIndex === 1 && (
         <Box
           p={3}
@@ -207,6 +215,12 @@ const GraphDataHandler: React.FC = () => {
             communityReports={communityReports}
             covariates={covariates}
           />
+        </Box>
+      )}
+
+      {tabIndex === 3 && (
+        <Box sx={{ display: "flex", height: "calc(100vh - 64px)" }}>
+          <ProfileMatching />
         </Box>
       )}
     </>

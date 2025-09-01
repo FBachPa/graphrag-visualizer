@@ -8,6 +8,7 @@ import {
 import ReactGA from "react-ga4";
 
 import GraphDataHandler from "../components/GraphDataHandler";
+import ProfileMatching from "../components/ProfileMatching";
 import {
   CssBaseline,
   Container,
@@ -124,6 +125,7 @@ const App: React.FC = () => {
             <Route path="/upload" element={<GraphDataHandler />} />{" "}
             <Route path="/graph" element={<GraphDataHandler />} />{" "}
             <Route path="/data" element={<GraphDataHandler />} />{" "}
+            <Route path="/profile-matching" element={<ProfileMatching />} />{" "}
             <Route path="*" element={<Navigate to="/upload" replace />} />{" "}
           </Routes>
 
